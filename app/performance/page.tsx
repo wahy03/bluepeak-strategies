@@ -16,7 +16,7 @@ export default function PerformancePage() {
 
         <div className="bg-white rounded-3xl shadow-xl p-4 border border-gray-100 overflow-hidden">
           <iframe
-            src="https://ct.spotware.com/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy"
+            src="https://ct.spotware.com/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategies"
             width="100%"
             height="900"
             frameBorder="0"
