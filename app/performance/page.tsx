@@ -22,29 +22,33 @@ export default function PerformancePage() {
           <div
             id="ctrader-plugin-root"
             style={{ width: "100%", height: "800px", position: "relative" }}
-          ></div>
+          />
         </div>
 
+        {/* Load cTrader Widget */}
         <Script
-          id="ctrader-widget"
-          src="https://app.ctrader.com/widget.js"
+          src="https://ct.spotware.com/widget.js"
           strategy="afterInteractive"
-          onLoad={() => {
-            // @ts-ignore
-            window.putInitScript("runPlugin");
-
-            // @ts-ignore
-            window.runPlugin("ctrader-plugin-root", {
-              route:
-                "/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy",
-              appConfig: {
-                strategy: {
-                  showStrategyPromotion: true,
-                },
-              },
-            });
-          }}
         />
+
+        {/* Initialize Widget */}
+        <Script id="ctrader-init" strategy="afterInteractive">
+          {`
+            window.addEventListener('load', function () {
+              if (window.putInitScript && window.runPlugin) {
+                window.putInitScript('runPlugin');
+                window.runPlugin('ctrader-plugin-root', {
+                  route: '/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy',
+                  appConfig: {
+                    strategy: {
+                      showStrategyPromotion: true
+                    }
+                  }
+                });
+              }
+            });
+          `}
+        </Script>
       </div>
     </main>
   );
