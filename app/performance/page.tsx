@@ -1,8 +1,57 @@
 "use client";
 
-import Script from "next/script";
+import { useEffect } from "react";
+
+declare global {
+  interface Window {
+    putInitScript: (name: string) => void;
+    runPlugin: (id: string, config: any) => void;
+  }
+}
 
 export default function PerformancePage() {
+  useEffect(() => {
+    const existingScript = document.querySelector(
+      'script[src="https://ct.spotware.com/widget.js"]'
+    );
+
+    const initializeWidget = () => {
+      const container = document.getElementById("ctrader-plugin-root");
+
+      if (container) {
+        container.innerHTML = ""; // clear previous widget
+
+        if (window.putInitScript && window.runPlugin) {
+          window.putInitScript("runPlugin");
+
+          window.runPlugin("ctrader-plugin-root", {
+            route:
+              "/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy",
+            appConfig: {
+              strategy: {
+                showStrategyPromotion: true,
+              },
+            },
+          });
+        }
+      }
+    };
+
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://ct.spotware.com/widget.js";
+      script.async = true;
+
+      script.onload = () => {
+        initializeWidget();
+      };
+
+      document.body.appendChild(script);
+    } else {
+      initializeWidget();
+    }
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#F8FAFC] px-8 py-16">
       <div className="max-w-7xl mx-auto">
@@ -24,31 +73,6 @@ export default function PerformancePage() {
             style={{ width: "100%", height: "800px", position: "relative" }}
           />
         </div>
-
-        {/* Load cTrader Widget */}
-        <Script
-          src="https://ct.spotware.com/widget.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Initialize Widget */}
-        <Script id="ctrader-init" strategy="afterInteractive">
-          {`
-            window.addEventListener('load', function () {
-              if (window.putInitScript && window.runPlugin) {
-                window.putInitScript('runPlugin');
-                window.runPlugin('ctrader-plugin-root', {
-                  route: '/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy',
-                  appConfig: {
-                    strategy: {
-                      showStrategyPromotion: true
-                    }
-                  }
-                });
-              }
-            });
-          `}
-        </Script>
       </div>
     </main>
   );
