@@ -1,57 +1,4 @@
-"use client";
-
-import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    putInitScript: (name: string) => void;
-    runPlugin: (id: string, config: any) => void;
-  }
-}
-
 export default function PerformancePage() {
-  useEffect(() => {
-    const existingScript = document.querySelector(
-      'script[src="https://ct.spotware.com/widget.js"]'
-    );
-
-    const initializeWidget = () => {
-      const container = document.getElementById("ctrader-plugin-root");
-
-      if (container) {
-        container.innerHTML = ""; // clear previous widget
-
-        if (window.putInitScript && window.runPlugin) {
-          window.putInitScript("runPlugin");
-
-          window.runPlugin("ctrader-plugin-root", {
-            route:
-              "/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy",
-            appConfig: {
-              strategy: {
-                showStrategyPromotion: true,
-              },
-            },
-          });
-        }
-      }
-    };
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "https://ct.spotware.com/widget.js";
-      script.async = true;
-
-      script.onload = () => {
-        initializeWidget();
-      };
-
-      document.body.appendChild(script);
-    } else {
-      initializeWidget();
-    }
-  }, []);
-
   return (
     <main className="min-h-screen bg-[#F8FAFC] px-8 py-16">
       <div className="max-w-7xl mx-auto">
@@ -67,10 +14,14 @@ export default function PerformancePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
-          <div
-            id="ctrader-plugin-root"
-            style={{ width: "100%", height: "800px", position: "relative" }}
+        <div className="bg-white rounded-3xl shadow-xl p-4 border border-gray-100 overflow-hidden">
+          <iframe
+            src="https://ct.spotware.com/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategy"
+            width="100%"
+            height="900"
+            frameBorder="0"
+            className="rounded-2xl"
+            title="BluePeak cTrader Performance"
           />
         </div>
       </div>
