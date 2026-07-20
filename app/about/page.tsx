@@ -1,11 +1,22 @@
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A] relative overflow-hidden">
-      {/* Background Effects */}
+      {/* Modern Background - sama persis dengan Homepage */}
       <div className="absolute inset-0">
+        {/* Gradient Glow */}
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl"></div>
         <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-cyan-300/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-[-10%] left-[30%] w-[400px] h-[400px] bg-blue-300/15 rounded-full blur-3xl"></div>
+
+        {/* Subtle Grid Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
       </div>
 
       <div className="relative z-10 px-8 py-16">
@@ -27,7 +38,7 @@ export default function AboutPage() {
 
           {/* Content */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200 shadow-sm">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-200/50 shadow-sm">
               <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
               <p className="text-slate-600 leading-relaxed">
                 To provide investors with a transparent, disciplined, and
@@ -36,7 +47,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200 shadow-sm">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-200/50 shadow-sm">
               <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
               <p className="text-slate-600 leading-relaxed">
                 To become a trusted investment strategy provider recognized for
@@ -47,7 +58,7 @@ export default function AboutPage() {
           </div>
 
           {/* Values */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200 shadow-sm">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-200/50 shadow-sm">
             <h2 className="text-3xl font-bold text-center mb-10">
               Core Values
             </h2>
