@@ -1,6 +1,13 @@
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A] px-8 py-16">
+      <div className="absolute inset-0">
+    <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl"></div>
+    <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-cyan-300/20 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-[-10%] left-[30%] w-[400px] h-[400px] bg-blue-300/15 rounded-full blur-3xl"></div>
+  </div>
+
+  <div className="relative z-10 px-8 py-16"
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,6 +84,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </main>
   );
