@@ -27,7 +27,7 @@ export default function Nav() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-10 font-data text-[0.72rem] tracking-[0.14em] uppercase text-[#9099a4]">
+        <div className="hidden md:flex items-center gap-10 font-data text-[0.9rem] tracking-[0.12em] uppercase text-[#9099a4]">
           {LINKS.map((link) => (
             <a
               key={link.href}
@@ -59,7 +59,7 @@ export default function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-white/[0.08] bg-[#141b2c] px-6 py-6 flex flex-col gap-5 font-data text-xs tracking-[0.14em] uppercase text-[#9099a4]">
+        <div className="md:hidden border-t border-white/[0.08] bg-[#141b2c] px-6 py-6 flex flex-col gap-5 font-data text-sm tracking-[0.12em] uppercase text-[#9099a4]">
           {LINKS.map((link) => (
             <a
               key={link.href}
