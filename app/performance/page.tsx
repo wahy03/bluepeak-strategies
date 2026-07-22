@@ -4,21 +4,20 @@ import Script from "next/script";
 
 export default function PerformancePage() {
   return (
-    <main className="min-h-screen bg-[#F8FAFC] px-8 py-16">
+    <main className="bg-[#141b2c] text-[#f3f1ea] px-6 md:px-8 pt-40 md:pt-48 pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-blue-600 font-semibold tracking-wide uppercase">
-            Live Performance
-          </p>
-          <h1 className="text-5xl font-bold text-[#071C3D] mt-4">
-            BluePeak Strategies Performance
+        <div className="max-w-2xl mb-14">
+          <p className="eyebrow mb-6">Live Performance</p>
+          <h1 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight">
+            BluePeak Strategies performance
           </h1>
-          <p className="text-gray-600 mt-4 text-lg">
-            Real-time performance data directly from cTrader Copy Trading.
+          <p className="mt-6 text-[#9099a4] text-lg leading-relaxed">
+            Real-time performance data streamed directly from cTrader Copy
+            Trading — no delays, no curation.
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+        <div className="panel p-4 md:p-6">
           <div
             id="ctrader-plugin-root"
             style={{ width: "100%", height: "900px", position: "relative" }}
@@ -30,10 +29,10 @@ export default function PerformancePage() {
           src="https://ct.spotware.com/widget.js"
           strategy="afterInteractive"
           onLoad={() => {
-            // @ts-ignore
+            // @ts-expect-error - cTrader widget script attaches these globally
             window.putInitScript("runPlugin");
 
-            // @ts-ignore
+            // @ts-expect-error - cTrader widget script attaches these globally
             window.runPlugin("ctrader-plugin-root", {
               route:
                 "/copy-provider/?lang=en&theme=dark&providerNickname=bluepeak.strategies",
